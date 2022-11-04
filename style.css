@@ -16,8 +16,8 @@
     padding: 10px;
     display: grid;
     justify-items: end;
-    align-items: end;
-    margin-bottom: 20px;
+    align-items: end; 
+    margin: 10px 0px;
 
 }
 
@@ -38,7 +38,7 @@
         "zero zero dot equal";
     grid-gap: 7px;
     justify-items: center;
-    margin-top: 25px;
+    margin-top: 0px;
 }
 
 .btn {
