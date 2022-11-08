@@ -32,7 +32,7 @@ document.querySelector('.buttons').onclick = (event) => {
 
     bringToScreen.textContent = '';
 
-    const key = event.target.textContent;
+    const key = event.target.dataset.value;
 
     if (integer.includes(key)) {
 
@@ -40,16 +40,17 @@ document.querySelector('.buttons').onclick = (event) => {
             if (firstNumber < maxNumber) {
             firstNumber += key;
             }
-            showOutput(firstNumber);
+            showOutput(formatNumberString(firstNumber));
+            console.log(typeof firstNumber)
         } else if (firstNumber !== '' && secondNumber !== '' && finish === true) {
             secondNumber = key;
             finish = false;
             showOutput(secondNumber);
         } else { 
             if (secondNumber < maxNumber) {
-                secondNumber += key;
+                secondNumber += key; 
                 }
-            showOutput(secondNumber);
+            showOutput(formatNumberString(secondNumber));
         }
         console.log(firstNumber, secondNumber, sign);
         return;
@@ -116,16 +117,34 @@ document.querySelector('.buttons').onclick = (event) => {
             return;
         }
 
+        firstNumber = String(firstNumber);
         finish = true;
-        showOutput(firstNumber);
+        showOutput(formatNumberString(firstNumber));
     }
     
 }
 
 
-// function formatNumber(number) {
-//     // TODO
-// }
+function formatNumberString(number) {
+    let point = 0;
+    let space = " ";
+    let result = '';
+
+    if (number.length <= 3) {
+        return number;
+    }
+
+    for (let i = number.length - 1; i >= 0; i--) {
+        if (point === 3) {
+            result = space + result;
+            point = 0;
+        }
+        result = number.charAt(i) + result;
+        point ++;
+    }
+
+    return result;
+}
 
 function showOutput(result) {
     bringToScreen.textContent = result;
